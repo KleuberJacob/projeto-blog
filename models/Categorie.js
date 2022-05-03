@@ -1,25 +1,22 @@
 const {Sequelize} = require("sequelize");
 const database = require("../database/dbConnection");
+const Article = require("./Article")
 
-const Artigo = database.define("artigo", {
+const Categorie = database.define("categorie", {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    titulo: {
+    categorie: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    descrição: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    categoria: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
+    }
 });
 
-module.exports = Artigo;
+Categorie.hasMany(Article)
+Article.belongsTo(Categorie)
+
+module.exports = Categorie;
+

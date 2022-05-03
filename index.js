@@ -17,13 +17,13 @@ sequelizeConnection.authenticate()
     });
 
 async function syncModelsSequelize() {
-    await sequelizeConnection.sync({ force: true })
+    await sequelizeConnection.sync({ force: false })
 };
 
 syncModelsSequelize();
 
 app.use("/", Router);
 
-app.listen(port, (req, res) => {
+app.listen(port, () => {
     console.log("App running in port: " + port)
 });

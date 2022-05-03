@@ -1,22 +1,25 @@
 const {Sequelize} = require("sequelize");
 const database = require("../database/dbConnection");
-const Artigo = require("./Artigo")
 
-const Categoria = database.define("categoria", {
+const User = database.define("user", {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true 
     },
-    nome: {
+    name: {
         type: Sequelize.STRING,
         allowNull: false
-    }
+    },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }, 
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
 });
 
-Categoria.hasMany(Artigo)
-Artigo.belongsTo(Categoria)
-
-module.exports = Categoria;
-
+module.exports = User;
